@@ -1,20 +1,28 @@
 import React, { useState } from 'react'
 import Button from './components/Button'
+import Displayer from './components/Displayer'
 
 const App = (props) => {
   const [title, setTitle] = useState()
   const [message, setMessage] = useState()
 
+  const messages = [
+    {
+        username: "Bob",
+        content: "Salut",
+        type: "A"
+    },
+    {
+        username: "Alice",
+        content: "Salut ca va ?",
+        type: "B"
+    }
+  ]
+
   return(
     <div className="app-container">
-      <h1>Composant APP</h1> 
-      <p>Contenu du composant APP.</p>
-      <Form onChange={(value) => {setTitle(value)}} />
-      <Form onChange={(value) => {setMessage(value)}} />
-      <h1>{title}</h1>
-      <Displayer content={message} />
-      <Button>Annuler</Button>
-      <Button onClick={() => {alert("Validé !")}}>Valider</Button>
+      <h1>Messagerie</h1>
+      <Displayer messages={messages} />
     </div>
   )
 }
@@ -26,12 +34,6 @@ const Form = (props) => {
         props.onChange(event.target.value)
       }} />
     </form>
-  )
-}
-
-const Displayer = (props) => {
-  return(
-  <p>{props.content}</p>
   )
 }
 
