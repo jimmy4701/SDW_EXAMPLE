@@ -6,7 +6,7 @@ const App = (props) => {
   const [title, setTitle] = useState()
   const [message, setMessage] = useState()
 
-  const messages = [
+  const discuss = [
     {
         username: "Bob",
         content: "Salut",
@@ -22,16 +22,17 @@ const App = (props) => {
   return(
     <div className="app-container">
       <h1>Messagerie</h1>
-      <Displayer messages={messages} />
+      <Displayer messages={discuss} />
     </div>
   )
 }
 
 const Form = (props) => {
+  const [content, setContent] = useState()
   return(
     <form>
-      <input type="text" onChange={(event) => {
-        props.onChange(event.target.value)
+      <input type="text" value={content} onChange={(event) => {
+        setContent(event.target.value)
       }} />
     </form>
   )
