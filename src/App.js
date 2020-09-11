@@ -4,36 +4,40 @@ import Displayer from './components/Displayer'
 
 const App = (props) => {
   const [title, setTitle] = useState()
-  const [message, setMessage] = useState()
+  const [discuss, setDiscuss] = useState([])
 
-  const discuss = [
-    {
-        username: "Bob",
-        content: "Salut",
-        type: "A"
-    },
-    {
-        username: "Alice",
-        content: "Salut ca va ?",
-        type: "B"
-    }
-  ]
+  const handleMessage = (new_message) => {
+    setDiscuss([...discuss, new_message])
+  }
 
   return(
     <div className="app-container">
       <h1>Messagerie</h1>
       <Displayer messages={discuss} />
+      <Form onMessage={handleMessage} username="Bob" type="A" />
+      <Form onMessage={handleMessage} username="Alice" type="B" />
     </div>
   )
 }
 
 const Form = (props) => {
   const [content, setContent] = useState()
+
+  const sendMessage = (e) => {
+    e.preventDefault()
+    props.onMessage({
+      username: props.username,
+      content,
+      type: props.type
+    })
+    setContent("")
+  }
   return(
-    <form>
-      <input type="text" value={content} onChange={(event) => {
+    <form onSubmit={sendMessage}>
+      <input type="text" value={content} placeholder={`Formulaire pour ${props.username}`} onChange={(event) => {
         setContent(event.target.value)
       }} />
+      <Button onClick={sendMessage}>Envoyer</Button>
     </form>
   )
 }

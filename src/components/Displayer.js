@@ -12,9 +12,11 @@ const Displayer = (props) => {
 
 const Item = (props) => {
     return(
-        <div className={props.message.type == 'A' ? "item left" : "item right"}>
-            <p className="username">{props.message.username}</p>
-            <p className="content">{props.message.content}</p>
+        <div className={props.message.type == "A" ? "flexLeft" : "flexRight"}>
+            <div className={props.message.type == 'A' ? "item left" : "item right"}>
+                <p className="username">{props.message.username}</p>
+                <p className="content">{props.message.content}</p>
+            </div>
         </div>
     )
 }
