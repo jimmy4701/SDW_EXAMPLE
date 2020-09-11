@@ -3,7 +3,6 @@ import Button from './components/Button'
 import Displayer from './components/Displayer'
 
 const App = (props) => {
-  const [title, setTitle] = useState()
   const [discuss, setDiscuss] = useState([])
 
   const handleMessage = (new_message) => {
@@ -14,7 +13,7 @@ const App = (props) => {
     <div className="app-container">
       <h1>Messagerie</h1>
       <Displayer messages={discuss} />
-      <Form onMessage={handleMessage} username="Bob" type="A" />
+      <Form onMessage={(mess) => alert(mess.content)} username="Bob" type="A" />
       <Form onMessage={handleMessage} username="Alice" type="B" />
     </div>
   )
@@ -34,9 +33,10 @@ const Form = (props) => {
   }
   return(
     <form onSubmit={sendMessage}>
-      <input type="text" value={content} placeholder={`Formulaire pour ${props.username}`} onChange={(event) => {
-        setContent(event.target.value)
-      }} />
+      <input type="text" value={content} placeholder={`Formulaire pour ${props.username}`} 
+        onChange={(event) => {
+          setContent(event.target.value)
+        }} />
       <Button onClick={sendMessage}>Envoyer</Button>
     </form>
   )
