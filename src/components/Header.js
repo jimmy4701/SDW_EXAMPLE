@@ -1,13 +1,13 @@
 import React from 'react'
 
 const Header = (props) => {
-    return <div>
-        <div>
-            <h1>{props.title}</h1>
-        </div>
-        <div>
-            <p>Texte de présentation</p>
-        </div>
+    return <div 
+        className="header" 
+        style={{backgroundImage: "url(" + (props.imageUrl || "https://wallpaperaccess.com/full/123346.jpg" ) + ")"}}
+    >
+        <h1>{props.title}</h1>
+        <p>{props.description}</p>
+        <button onClick={props.onClick}>{props.buttonText}</button>
     </div>
 }
 
